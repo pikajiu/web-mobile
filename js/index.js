@@ -1,4 +1,8 @@
 window.onload = function () {
+  setHeaderOpacity();
+  setSKTime();
+}
+function setHeaderOpacity() {
   // 1.获取搜索栏
   var jd_search = document.querySelector('.search')
   console.log(jd_search)
@@ -7,11 +11,10 @@ window.onload = function () {
   // 3.监听滚动事件
   window.onscroll = function () {
     // 4.获取滑出屏幕的界面高度
-    var scroll_Height = window.document.body.scrollTop||document.documentElement.scrollTop
+    var scroll_Height = window.document.body.scrollTop || document.documentElement.scrollTop
     // 5.计算透明度=4./2.
     var opcity = scroll_Height / navHeight
     // 6.赋值给搜索框
-    jd_search.style.backgroundColor = 'rgba(233, 34, 35, '+opcity+')'
+    jd_search.style.backgroundColor = 'rgba(233, 34, 35, ' + opcity + ')'
   }
-
 }
