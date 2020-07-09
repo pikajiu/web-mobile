@@ -18,3 +18,27 @@ function setHeaderOpacity() {
     jd_search.style.backgroundColor = 'rgba(233, 34, 35, ' + opcity + ')'
   }
 }
+
+function setSKTime() {
+  var total = 100000;
+
+  var timeID = setInterval(() => {
+    total--;
+    var hours = Math.floor(total / 3600);
+    var minutes = Math.floor(total % 3600 / 60);
+    var seconds = Math.floor(total % 3600 % 60);
+    var times = document.querySelectorAll('.time');
+    times[0].innerHTML = Math.floor(hours / 10);
+    times[1].innerHTML = Math.floor(hours % 10);
+    times[2].innerHTML = Math.floor(minutes / 10);
+    times[3].innerHTML = Math.floor(minutes % 10);
+    times[4].innerHTML = Math.floor(seconds / 10);
+    times[5].innerHTML = Math.floor(seconds % 10);
+
+    if (total <= 0) {
+      clearInterval(timeID);
+      return;
+    }
+  }, 1000);
+
+}
