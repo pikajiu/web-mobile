@@ -1,6 +1,7 @@
 window.onload = function () {
   setHeaderOpacity();
   setSKTime();
+  setBanner();
 }
 function setHeaderOpacity() {
   // 1.获取搜索栏
@@ -18,7 +19,6 @@ function setHeaderOpacity() {
     jd_search.style.backgroundColor = 'rgba(233, 34, 35, ' + opcity + ')'
   }
 }
-
 function setSKTime() {
   var total = 100000;
 
@@ -41,4 +41,26 @@ function setSKTime() {
     }
   }, 1000);
 
+}
+
+function setBanner() {
+  //获取banner>ul:nth-of-type(1)元素
+  var imgbox = document.querySelector('.banner > ul:nth-of-type(1)')
+  //异步请求数据
+  $.ajax({
+    type: 'get',
+    //路径基于引用js的html(index.html),可以从本地的目录拿数据
+    url: './data/img.json',
+    dataType: 'json',
+    success: function (result) {
+      //渲染模板
+      var html = template('bannerTemplate', result);
+      imgbox.innerHTML = html;
+      //前后各插入一张, for example: n，1，2，...,n,1
+      
+      //修改CSS，改变 banner witdh , 改变li width
+      imgbox.style.witdh = 
+
+    }
+  })
 }
