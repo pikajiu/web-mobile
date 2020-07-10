@@ -46,6 +46,7 @@ function setSKTime() {
 function setBanner() {
   //获取banner>ul:nth-of-type(1)元素
   var imgbox = document.querySelector('.banner > ul:nth-of-type(1)')
+  var bannerWidth = document.querySelector('.banner').offsetWidth;
   //异步请求数据
   $.ajax({
     type: 'get',
@@ -64,7 +65,7 @@ function setBanner() {
       imgbox.appendChild(fisrtImg.cloneNode(true));
       //修改CSS，改变 ul witdh , 改变li width
       
-      var bannerWidth = document.querySelector('.banner').offsetWidth;
+      
       var liElements = imgbox.querySelectorAll('li');
       // ul witdh = banner width * li 数量
       imgbox.style.width = bannerWidth * liElements.length + 'px';
@@ -75,4 +76,31 @@ function setBanner() {
       imgbox.style.left = -bannerWidth + 'px';
     }
   })
+  //自动轮播
+  var index = 1;
+  var bannerID = setInterval(() => {
+    //偏移值
+    index++;
+    imgbox.style.transition = 'left .5s';
+    imgbox.style.left = -bannerWidth * index + 'px';
+    
+  }, 2000);
+  // 轮播到最后一张，无过渡跳到第一张
+  imgbox.addEventListener('transitionend', function () {
+    if (index >= 9) {
+      index = 1;
+      imgbox.style.transition = 'none';
+      imgbox.style.left = -bannerWidth * index + 'px';
+    }
+  })
+  /*  手动轮播
+      1.监听touchstart事件，获取初始鼠标位置
+      2.监听touchmove事件，获取实时鼠标位置
+      3.计算鼠标滑动距离，改变ul偏移值
+      4.监听touchend事件，获取最后鼠标位置
+      5.计算总共滑动距离，超过bannerwidth则偏移到下一张，否则偏移回当前图片
+      5.滑动快过动画，bug fix？
+  */
+
+
 }
