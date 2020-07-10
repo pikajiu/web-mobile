@@ -37,27 +37,24 @@ li {
   min-width: 320px;
   background-color: #eee;
 }
-.block {
-  margin-top: 10px;
-  background-color: #fff;
-}
-.topblock {
-  margin-top: 0px;
-}
-.search {
+.layout .search {
   width: 100%;
+  max-width: 640px;
   position: fixed;
   display: flex;
   align-items: center;
   background-color: rgba(233, 34, 35, 0);
   padding: 5px 5px;
+  box-sizing: border-box;
+  z-index: 998;
 }
-.search .input {
+.layout .search .input {
+  width: 100%;
   flex: 1;
   position: relative;
   margin: 0 5px;
 }
-.search .input input {
+.layout .search .input input {
   box-sizing: border-box;
   width: 100%;
   height: 21px;
@@ -67,7 +64,7 @@ li {
   padding-left: 24px;
   font-size: 13px;
 }
-.search .input::before {
+.layout .search .input::before {
   content: "";
   display: inline-block;
   position: absolute;
@@ -81,7 +78,7 @@ li {
   background-size: 176px 176px;
   background-repeat: no-repeat;
 }
-.search .jd_logo {
+.layout .search .jd_logo {
   width: 60px;
   background-image: url(../images/jd-sprites.png);
   background-position: 0 -107px;
@@ -89,21 +86,40 @@ li {
   background-repeat: no-repeat;
   height: 24px;
 }
-.search .login {
+.layout .search .login {
   width: 2rem;
   color: #fff;
   font-size: 10px;
 }
-.nav {
+.layout .banner {
+  position: relative;
+  overflow: hidden;
+}
+.layout .banner > ul {
+  position: relative;
+}
+.layout .banner > ul > li {
+  display: block;
+  float: left;
+}
+.layout .banner > ul > li > a {
+  width: 100%;
+  display: block;
+}
+.layout .banner > ul > li > a > img {
+  width: 100%;
+  display: block;
+}
+.layout .nav {
   width: 100%;
 }
-.nav > ul {
+.layout .nav > ul {
   width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
-.nav > ul > li {
+.layout .nav > ul > li {
   width: 25%;
   display: flex;
   justify-content: center;
@@ -111,20 +127,20 @@ li {
   text-align: center;
   padding: 5px 0;
 }
-.nav > ul > li img {
+.layout .nav > ul > li img {
   width: 50%;
 }
-.nav > ul > li .name {
+.layout .nav > ul > li .name {
   color: #000;
   font-size: 13px;
 }
-.sk .line .clock {
+.layout .sk .line .clock {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: left;
 }
-.sk .line .clock .pic {
+.layout .sk .line .clock .pic {
   width: 23px;
   height: 23px;
   background-position: -79px -109px;
@@ -133,54 +149,54 @@ li {
   background-size: 200px 200px;
   background-repeat: no-repeat;
 }
-.sk .line .clock .name {
+.layout .sk .line .clock .name {
   color: #ff0000;
   padding: 0 2px;
 }
-.sk .line .clock .timer {
+.layout .sk .line .clock .timer {
   display: flex;
   align-items: center;
   padding: 0 2px;
 }
-.sk .line .clock .timer div {
+.layout .sk .line .clock .timer div {
   box-sizing: border-box;
   text-align: center;
   padding: 0 1px;
   margin-left: 2px;
 }
-.sk .line .clock .timer .time {
+.layout .sk .line .clock .timer .time {
   background-color: #000;
   color: #fff;
   padding: 1px 2  px;
 }
-.sk .goods {
+.layout .sk .goods {
   margin-top: 10px ;
   display: flex;
   width: 100%;
   text-align: center;
 }
-.sk .goods div:nth-of-type(2) img {
+.layout .sk .goods div:nth-of-type(2) img {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
-.sk .goods img {
+.layout .sk .goods img {
   width: 75%;
   display: inline-block;
   padding: 0 10px 0 10px;
 }
-.sk .goods div,
-.sk .goods del {
+.layout .sk .goods div,
+.layout .sk .goods del {
   color: #000;
 }
-.supermarket .line {
+.layout .supermarket .line {
   border-bottom: 1px solid #ccc;
 }
-.supermarket .line .name {
+.layout .supermarket .line .name {
   position: relative;
   margin-left: 7px;
   padding: 4px 0px 4px 9px;
 }
-.supermarket .line .name::before {
+.layout .supermarket .line .name::before {
   content: "";
   position: absolute;
   top: 3px;
@@ -189,48 +205,55 @@ li {
   height: 9px;
   background-color: #e92223;
 }
-.supermarket .list {
+.layout .supermarket .list {
   display: flex;
   align-items: stretch;
 }
-.supermarket .list .small {
+.layout .supermarket .list .small {
   box-sizing: border-box;
   width: 50%;
   display: flex;
   flex-direction: column;
   height: 103px;
 }
-.supermarket .list .small a {
+.layout .supermarket .list .small a {
   height: 100%;
 }
-.supermarket .list .large {
+.layout .supermarket .list .large {
   box-sizing: border-box;
   width: 50%;
   height: 206px;
 }
-.supermarket .list .large a {
+.layout .supermarket .list .large a {
   height: 100%;
 }
-.supermarket .list img {
+.layout .supermarket .list img {
   width: 100%;
   height: 100%;
   display: block;
 }
-.supermarket .flex-direction-left {
+.layout .supermarket .flex-direction-left {
   flex-direction: row;
 }
-.supermarket .flex-direction-left .large {
+.layout .supermarket .flex-direction-left .large {
   border-right: 1px solid #ccc;
 }
-.supermarket .flex-direction-left .small a:nth-of-type(1) {
+.layout .supermarket .flex-direction-left .small a:nth-of-type(1) {
   border-bottom: 1px solid #ccc;
 }
-.supermarket .flex-direction-right {
+.layout .supermarket .flex-direction-right {
   flex-direction: row-reverse;
 }
-.supermarket .flex-direction-right .large {
+.layout .supermarket .flex-direction-right .large {
   border-left: 1px solid #ccc;
 }
-.supermarket .flex-direction-right .small a:nth-of-type(1) {
+.layout .supermarket .flex-direction-right .small a:nth-of-type(1) {
   border-bottom: 1px solid #ccc;
+}
+.block {
+  margin-top: 10px;
+  background-color: #fff;
+}
+.topblock {
+  margin-top: 0px;
 }

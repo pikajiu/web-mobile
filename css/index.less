@@ -41,10 +41,269 @@ li{
   padding: 0;
   margin: 0 auto; 
   width: 100vw;
-  // height: 100vh;
   max-width: 640px;
   min-width: 320px;
   background-color: #eee;
+  .search{
+
+    width: 100%;
+    max-width: 640px;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    background-color:rgba(233, 34, 35, 0);
+    padding: 5px 5px;
+    box-sizing: border-box;
+    z-index: 998;
+    
+    .input{
+      width: 100%;
+      // box-sizing: border-box;
+      flex: 1;
+      position: relative;
+      margin: 0 5px;
+      input{
+        box-sizing: border-box;
+        width: 100%;
+        height: 21px;
+        background-color: #fff;
+        border: none;
+        // border: 1px solid #fff;
+        border-radius: 10px;
+        padding-left: 24px;
+        font-size: 13px;
+        // color: #ccc;
+        
+      }
+      // 单标签不能用伪元素
+        &::before{
+          content: "";
+          display: inline-block;
+          position: absolute;
+          top: 3px;
+          left: 7px;
+          width: 15px;
+          height: 15px;
+          // background-color: #000;
+          z-index: 998;
+          background-image: url(../images/jd-sprites.png);
+          background-position: -53px -97px;
+          background-size: 176px 176px;
+          background-repeat: no-repeat;
+          
+        }
+    }
+    .jd_logo{
+      width: 60px;
+      background-image: url(../images/jd-sprites.png);
+      background-position: 0 -107px;
+      background-size: 200px 200px;
+      background-repeat: no-repeat;
+      height: 24px;
+    }
+    .login{
+      width: 2rem;
+      color: #fff;
+      font-size: 10px;
+    }
+  }
+  .banner{
+    // width: 3750px;
+    position: relative;
+    overflow: hidden;
+    > ul{
+      // width: 3750px;
+      position: relative;
+      >li{
+  
+        display: block;
+        float: left;
+        >a{
+          width: 100%;
+          display: block;
+          >img{
+            width: 100%;
+            display: block;
+  
+          }
+        }
+      }
+  
+    }
+  }
+  .nav{
+    width: 100%;
+    // margin: 10px 0;
+    >ul{
+      width: 100%;
+      display: flex;
+      // align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      >li{
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 5px 0;
+        img{
+          width: 50%;
+        }
+        .name{
+          color: #000;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+  .sk{
+    .line{
+      .clock{
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        .pic{
+          width: 23px;
+          height: 23px;
+          background-position: -79px -109px;
+          padding: 0 2px;
+          .jd_sprites;
+        }
+        .name{
+          color: #ff0000;
+          padding: 0 2px;
+        }
+        .timer {
+          display: flex;
+          align-items: center;
+          padding: 0 2px;
+          div {
+            box-sizing: border-box;
+            text-align: center;
+            // display: inline-block;
+            // width: 15px;
+            padding: 0 1px;
+            // height: 20px;
+            margin-left:2px;
+          }
+          .time{
+                background-color: #000;
+                color: #fff;
+                padding: 1px 2  px;
+          }
+        }
+  
+  
+      }
+  
+    }
+    .goods{
+      margin-top: 10px ;
+      display: flex;
+      width: 100%;
+      text-align: center;
+  
+      div:nth-of-type(2) img{
+          border-left: @border;
+          border-right: @border;
+        
+      }
+  
+      img{
+        //img元素可以用width修改图片大小.
+        //display:inline-block元素可以用text-align：center;设置居中；
+        width: 75%;
+        display: inline-block;
+        padding: 0 10px 0 10px;
+      }
+      div,del{
+        color:#000;
+      }
+    }
+  
+  
+  }
+  .supermarket{
+    .line{
+      border-bottom: @border;
+      .name{
+        position: relative;
+        margin-left: 7px;
+        padding: 4px 0px 4px 9px;
+        &::before{
+          content: "";
+          position: absolute;
+          top: 3px;
+          left: 2px;
+          width: 2px;
+          height: 9px;
+          background-color: @jd_red;
+        }
+      }
+    }
+  
+    .list{
+      // width: 100%;
+      display: flex;
+      align-items: stretch;
+      // height: 206px;
+      // flex-direction: row-reverse;
+      .small{
+        box-sizing: border-box;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        // background-color: #00ff00;
+        height: 103px;
+        a{
+          // height: 206px;
+          height: 100%;
+          // display: inline-block;
+        }
+      }
+      .large{
+        box-sizing: border-box;
+        width: 50%;
+        // background-color: #ff0000;
+        height: 206px;
+        a{
+          // height: 206px;
+          height: 100%;
+          // display: inline-block;
+        }
+      }
+      img{
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    }
+  
+    .flex-direction-left{
+      flex-direction: row;
+      .large{
+        border-right: @border;
+      }
+      .small{
+        a:nth-of-type(1){
+          border-bottom: @border;
+        }
+      }
+    }
+    .flex-direction-right{
+      flex-direction: row-reverse;
+      .large{
+        border-left: @border;
+      }
+      .small{
+        a:nth-of-type(1){
+          border-bottom: @border;
+        }
+      }
+    }
+  }
 }
 .block{
   margin-top: 10px;
@@ -52,235 +311,4 @@ li{
 }
 .topblock{
   margin-top: 0px;
-}
-.search{
-  width: 100%;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  background-color:rgba(233, 34, 35, 0);
-  padding: 5px 5px;
-  
-  .input{
-    flex: 1; 
-    position: relative;
-    margin: 0 5px;
-    input{
-      box-sizing: border-box;
-      width: 100%;
-      height: 21px;
-      background-color: #fff;
-      border: none;
-      // border: 1px solid #fff;
-      border-radius: 10px;
-      padding-left: 24px;
-      font-size: 13px;
-      // color: #ccc;
-      
-    }
-    // 单标签不能用伪元素
-      &::before{
-        content: "";
-        display: inline-block;
-        position: absolute;
-        top: 3px;
-        left: 7px;
-        width: 15px;
-        height: 15px;
-        // background-color: #000;
-        z-index: 998;
-        background-image: url(../images/jd-sprites.png);
-        background-position: -53px -97px;
-        background-size: 176px 176px;
-        background-repeat: no-repeat;
-        
-      }
-  }
-  .jd_logo{
-    width: 60px;
-    background-image: url(../images/jd-sprites.png);
-    background-position: 0 -107px;
-    background-size: 200px 200px;
-    background-repeat: no-repeat;
-    height: 24px;
-  }
-  .login{
-    width: 2rem;
-    color: #fff;
-    font-size: 10px;
-  }
-}
-.nav{
-  width: 100%;
-  // margin: 10px 0;
-  >ul{
-    width: 100%;
-    display: flex;
-    // align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    >li{
-      width: 25%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 5px 0;
-      img{
-        width: 50%;
-      }
-      .name{
-        color: #000;
-        font-size: 13px;
-      }
-    }
-  }
-}
-.sk{
-  .line{
-    .clock{
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: left;
-      .pic{
-        width: 23px;
-        height: 23px;
-        background-position: -79px -109px;
-        padding: 0 2px;
-        .jd_sprites;
-      }
-      .name{
-        color: #ff0000;
-        padding: 0 2px;
-      }
-      .timer {
-        display: flex;
-        align-items: center;
-        padding: 0 2px;
-        div {
-          box-sizing: border-box;
-          text-align: center;
-          // display: inline-block;
-          // width: 15px;
-          padding: 0 1px;
-          // height: 20px;
-          margin-left:2px;
-        }
-        .time{
-              background-color: #000;
-              color: #fff;
-              padding: 1px 2  px;
-        }
-      }
-
-
-    }
-
-  }
-  .goods{
-    margin-top: 10px ;
-    display: flex;
-    width: 100%;
-    text-align: center;
-
-    div:nth-of-type(2) img{
-        border-left: @border;
-        border-right: @border;
-      
-    }
-
-    img{
-      //img元素可以用width修改图片大小.
-      //display:inline-block元素可以用text-align：center;设置居中；
-      width: 75%;
-      display: inline-block;
-      padding: 0 10px 0 10px;
-    }
-    div,del{
-      color:#000;
-    }
-  }
-
-
-}
-
-.supermarket{
-  .line{
-    border-bottom: @border;
-    .name{
-      position: relative;
-      margin-left: 7px;
-      padding: 4px 0px 4px 9px;
-      &::before{
-        content: "";
-        position: absolute;
-        top: 3px;
-        left: 2px;
-        width: 2px;
-        height: 9px;
-        background-color: @jd_red;
-      }
-    }
-  }
-
-  .list{
-    // width: 100%;
-    display: flex;
-    align-items: stretch;
-    // height: 206px;
-    // flex-direction: row-reverse;
-    .small{
-      box-sizing: border-box;
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      // background-color: #00ff00;
-      height: 103px;
-      a{
-        // height: 206px;
-        height: 100%;
-        // display: inline-block;
-      }
-    }
-    .large{
-      box-sizing: border-box;
-      width: 50%;
-      // background-color: #ff0000;
-      height: 206px;
-      a{
-        // height: 206px;
-        height: 100%;
-        // display: inline-block;
-      }
-    }
-    img{
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-  }
-
-  .flex-direction-left{
-    flex-direction: row;
-    .large{
-      border-right: @border;
-    }
-    .small{
-      a:nth-of-type(1){
-        border-bottom: @border;
-      }
-    }
-  }
-  .flex-direction-right{
-    flex-direction: row-reverse;
-    .large{
-      border-left: @border;
-    }
-    .small{
-      a:nth-of-type(1){
-        border-bottom: @border;
-      }
-    }
-  }
 }

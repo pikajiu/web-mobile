@@ -57,10 +57,22 @@ function setBanner() {
       var html = template('bannerTemplate', result);
       imgbox.innerHTML = html;
       //前后各插入一张, for example: n，1，2，...,n,1
+      var fisrtImg = imgbox.querySelector('li:nth-of-type(1)')
+      var lastImg = imgbox.querySelector('li:nth-last-of-type(1)')
+    /*深拷贝*/
+      imgbox.insertBefore(lastImg.cloneNode(true),fisrtImg);
+      imgbox.appendChild(fisrtImg.cloneNode(true));
+      //修改CSS，改变 ul witdh , 改变li width
       
-      //修改CSS，改变 banner witdh , 改变li width
-      imgbox.style.witdh = 
-
+      var bannerWidth = document.querySelector('.banner').offsetWidth;
+      var liElements = imgbox.querySelectorAll('li');
+      // ul witdh = banner width * li 数量
+      imgbox.style.width = bannerWidth * liElements.length + 'px';
+      for (var i = 0; i < liElements.length; i++){
+        // each li width = banner width
+        liElements[i].style.width = bannerWidth + 'px';
+      }
+      imgbox.style.left = -bannerWidth + 'px';
     }
   })
 }

@@ -1,12 +1,12 @@
 {
   "imgs":[
-    "./upload/l1.jpg",
-    "./upload/l2.jpg",
-    "./upload/l3.jpg",
-    "./upload/l4.jpg",
-    "./upload/l5.jpg",
-    "./upload/l6.jpg",
-    "./upload/l7.jpg",
-    "./upload/l8.jpg"
+    "./uploads/l1.jpg",
+    "./uploads/l2.jpg",
+    "./uploads/l3.jpg",
+    "./uploads/l4.jpg",
+    "./uploads/l5.jpg",
+    "./uploads/l6.jpg",
+    "./uploads/l7.jpg",
+    "./uploads/l8.jpg"
   ]
 }
