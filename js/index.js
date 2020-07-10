@@ -87,15 +87,22 @@ function setBanner() {
   }, 2000);
   // 轮播到最后一张，无过渡跳到第一张
   // 轮播到第一张，直接跳到倒数第二张
+  var canTouch = true;
   imgbox.addEventListener('transitionend', function () {
+
     if (index >= 9) {
+      //index = Math.abs(index - 8)
       index = 1;
+      imgbox.style.transition = 'none';
+      imgbox.style.left = -bannerWidth * index + 'px';
     }
     if (index <= 0) {
       index = 8;
+      imgbox.style.transition = 'none';
+      imgbox.style.left = -bannerWidth * index + 'px';
     }
-    imgbox.style.transition = 'none';
-    imgbox.style.left = -bannerWidth * index + 'px';
+    // 过渡效果结束，可以响应下一次touch
+    canTouch = true
 
 
 
@@ -121,24 +128,43 @@ function setBanner() {
     moveX = e.targetTouches[0].clientX;
     // (moveX - startX) > bannerWidth ?: (bannerWidth - 1): (moveX - startX);
     // console.log(moveX - startX);
-
+    //如果滑动超过屏幕宽度，则校正到范围内
+    duringDistanceX = moveX - startX
+    if (Math.abs(duringDistanceX) > bannerWidth) {
+      duringDistanceX = (duringDistanceX / Math.abs(duringDistanceX)) * (bannerWidth-10)
+      console.log(duringDistanceX)
+    }
     imgbox.style.transition = 'none';
-    imgbox.style.left = -bannerWidth * index + (moveX - startX) + 'px';
+    imgbox.style.left = -bannerWidth * index + duringDistanceX + 'px';
   })
   imgbox.addEventListener('touchend', function (e) {
     endX = e.changedTouches[0].clientX;
-    console.log(endX - startX);
-    //滑动距离大于屏幕一半，翻页，否则退回原处,滑动值 = -(偏移值)
-    index -= Math.floor((endX - startX) / (bannerWidth / 2))
-    imgbox.style.transition = 'left .5s'
-    imgbox.style.left = -bannerWidth * index + 'px';
-    console.log('index:' + index);
-    //手动轮播结束，自动轮播继续
-    bannerID = setInterval(() => {
-      index++
+    // console.log(endX - startX);
+    var distanceX = endX - startX
+    //如果滑动超过屏幕宽度，则校正到范围内
+    if (canTouch == true) {
+      if (Math.abs(distanceX) > bannerWidth) {
+        distanceX = (distanceX /Math.abs(distanceX)) *(1+bannerWidth / 2) ;
+        console.log('distanceX:'+distanceX)
+      }
+      var halfBannerWidth = bannerWidth * 0.5;
+      console.log(halfBannerWidth);
+      //滑动距离大于屏幕一半，翻页，否则退回原处,滑动值 = -(偏移值)
+      //Math.floor() 返回小于或等于一个给定数字的最大整数。
+      index -= parseInt((distanceX) / (halfBannerWidth))
+      // index -= Math.floor((distanceX) / (halfBannerWidth))
+      // console.log('parseInt((distanceX) / (halfBannerWidth))'+parseInt((distanceX) / (halfBannerWidth)))
       imgbox.style.transition = 'left .5s'
       imgbox.style.left = -bannerWidth * index + 'px';
-    }, 2000);
+          //手动轮播结束，自动轮播继续
+      bannerID = setInterval(() => {
+      imgbox.style.transition = 'left .5s'
+      imgbox.style.left = -bannerWidth * index + 'px';
+      index++
+    }, 3000);
+    }
+    canTouch = false
+
   })
 
 
