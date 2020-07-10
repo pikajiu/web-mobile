@@ -6,7 +6,7 @@ window.onload = function () {
 function setHeaderOpacity() {
   // 1.获取搜索栏
   var jd_search = document.querySelector('.search')
-  console.log(jd_search)
+  // console.log(jd_search)
   // 2.获取轮播图高度
   var navHeight = document.querySelector('.nav').offsetHeight
   // 3.监听滚动事件
@@ -60,16 +60,16 @@ function setBanner() {
       //前后各插入一张, for example: n，1，2，...,n,1
       var fisrtImg = imgbox.querySelector('li:nth-of-type(1)')
       var lastImg = imgbox.querySelector('li:nth-last-of-type(1)')
-    /*深拷贝*/
-      imgbox.insertBefore(lastImg.cloneNode(true),fisrtImg);
+      /*深拷贝*/
+      imgbox.insertBefore(lastImg.cloneNode(true), fisrtImg);
       imgbox.appendChild(fisrtImg.cloneNode(true));
       //修改CSS，改变 ul witdh , 改变li width
-      
-      
+
+
       var liElements = imgbox.querySelectorAll('li');
       // ul witdh = banner width * li 数量
       imgbox.style.width = bannerWidth * liElements.length + 'px';
-      for (var i = 0; i < liElements.length; i++){
+      for (var i = 0; i < liElements.length; i++) {
         // each li width = banner width
         liElements[i].style.width = bannerWidth + 'px';
       }
@@ -83,15 +83,22 @@ function setBanner() {
     index++;
     imgbox.style.transition = 'left .5s';
     imgbox.style.left = -bannerWidth * index + 'px';
-    
+
   }, 2000);
   // 轮播到最后一张，无过渡跳到第一张
+  // 轮播到第一张，直接跳到倒数第二张
   imgbox.addEventListener('transitionend', function () {
     if (index >= 9) {
       index = 1;
-      imgbox.style.transition = 'none';
-      imgbox.style.left = -bannerWidth * index + 'px';
     }
+    if (index <= 0) {
+      index = 8;
+    }
+    imgbox.style.transition = 'none';
+    imgbox.style.left = -bannerWidth * index + 'px';
+
+
+
   })
   /*  手动轮播
       1.监听touchstart事件，获取初始鼠标位置
@@ -101,6 +108,38 @@ function setBanner() {
       5.计算总共滑动距离，超过bannerwidth则偏移到下一张，否则偏移回当前图片
       5.滑动快过动画，bug fix？
   */
+  var startX, moveX, endX
+  imgbox.addEventListener('touchstart', function (e) {
+    // 停掉自动轮播
+    clearInterval(bannerID);
+    console.log(bannerID);
+    console.log(e);
+    startX = e.targetTouches[0].clientX;
+  })
+
+  imgbox.addEventListener('touchmove', function (e) {
+    moveX = e.targetTouches[0].clientX;
+    // (moveX - startX) > bannerWidth ?: (bannerWidth - 1): (moveX - startX);
+    // console.log(moveX - startX);
+
+    imgbox.style.transition = 'none';
+    imgbox.style.left = -bannerWidth * index + (moveX - startX) + 'px';
+  })
+  imgbox.addEventListener('touchend', function (e) {
+    endX = e.changedTouches[0].clientX;
+    console.log(endX - startX);
+    //滑动距离大于屏幕一半，翻页，否则退回原处,滑动值 = -(偏移值)
+    index -= Math.floor((endX - startX) / (bannerWidth / 2))
+    imgbox.style.transition = 'left .5s'
+    imgbox.style.left = -bannerWidth * index + 'px';
+    console.log('index:' + index);
+    //手动轮播结束，自动轮播继续
+    bannerID = setInterval(() => {
+      index++
+      imgbox.style.transition = 'left .5s'
+      imgbox.style.left = -bannerWidth * index + 'px';
+    }, 2000);
+  })
 
 
 }
