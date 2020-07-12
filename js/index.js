@@ -47,6 +47,8 @@ function setBanner() {
   //获取banner>ul:nth-of-type(1)元素
   var imgbox = document.querySelector('.banner > ul:nth-of-type(1)')
   var bannerWidth = document.querySelector('.banner').offsetWidth;
+  var indicatorBox = document.querySelector('.banner > ul:nth-of-type(2)')
+  var indicatorList;
   //异步请求数据
   $.ajax({
     type: 'get',
@@ -57,6 +59,9 @@ function setBanner() {
       //渲染模板
       var html = template('bannerTemplate', result);
       imgbox.innerHTML = html;
+      var indicatorHtml = template('indicatorTemplate', result)
+      indicatorBox.innerHTML = indicatorHtml;
+      indicatorList = indicatorBox.querySelectorAll('li')
       //前后各插入一张, for example: n，1，2，...,n,1
       var fisrtImg = imgbox.querySelector('li:nth-of-type(1)')
       var lastImg = imgbox.querySelector('li:nth-last-of-type(1)')
@@ -89,7 +94,6 @@ function setBanner() {
   // 轮播到第一张，直接跳到倒数第二张
   var canTouch = true;
   imgbox.addEventListener('transitionend', function () {
-
     if (index >= 9) {
       //index = Math.abs(index - 8)
       index = 1;
@@ -101,7 +105,10 @@ function setBanner() {
       imgbox.style.transition = 'none';
       imgbox.style.left = -bannerWidth * index + 'px';
     }
+    // 设置indicator
+    setActiveIndicator(index);
     // 过渡效果结束，可以响应下一次touch
+    
     canTouch = true
 
 
@@ -131,7 +138,7 @@ function setBanner() {
     //如果滑动超过屏幕宽度，则校正到范围内
     duringDistanceX = moveX - startX
     if (Math.abs(duringDistanceX) > bannerWidth) {
-      duringDistanceX = (duringDistanceX / Math.abs(duringDistanceX)) * (bannerWidth-10)
+      duringDistanceX = (duringDistanceX / Math.abs(duringDistanceX)) * (bannerWidth - 10)
       console.log(duringDistanceX)
     }
     imgbox.style.transition = 'none';
@@ -144,8 +151,8 @@ function setBanner() {
     //如果滑动超过屏幕宽度，则校正到范围内
     if (canTouch == true) {
       if (Math.abs(distanceX) > bannerWidth) {
-        distanceX = (distanceX /Math.abs(distanceX)) *(1+bannerWidth / 2) ;
-        console.log('distanceX:'+distanceX)
+        distanceX = (distanceX / Math.abs(distanceX)) * (1 + bannerWidth / 2);
+        console.log('distanceX:' + distanceX)
       }
       var halfBannerWidth = bannerWidth * 0.5;
       console.log(halfBannerWidth);
@@ -156,16 +163,22 @@ function setBanner() {
       // console.log('parseInt((distanceX) / (halfBannerWidth))'+parseInt((distanceX) / (halfBannerWidth)))
       imgbox.style.transition = 'left .5s'
       imgbox.style.left = -bannerWidth * index + 'px';
-          //手动轮播结束，自动轮播继续
+      //手动轮播结束，自动轮播继续
       bannerID = setInterval(() => {
-      imgbox.style.transition = 'left .5s'
-      imgbox.style.left = -bannerWidth * index + 'px';
-      index++
-    }, 3000);
+        imgbox.style.transition = 'left .5s'
+        imgbox.style.left = -bannerWidth * index + 'px';
+        index++
+      }, 3000);
     }
     canTouch = false
-
   })
 
-
+  function setActiveIndicator(index) {
+    // 清空所有active效果
+    for (var i = 0; i < indicatorList.length; i++){
+      indicatorList[i].className = ''
+    }
+    // 给当前index 设置 active 效果
+    indicatorList[index-1].className = 'active'
+  }
 }

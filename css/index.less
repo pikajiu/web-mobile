@@ -111,7 +111,7 @@ li{
     // width: 3750px;
     position: relative;
     overflow: hidden;
-    > ul{
+    > ul:nth-of-type(1){
       // width: 3750px;
       position: relative;
       >li{
@@ -129,6 +129,23 @@ li{
         }
       }
   
+    }
+    > ul:nth-of-type(2){
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      > li{
+        width: 8px;
+        height: 8px;
+        margin: 0px 5px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        float: left;
+        &.active {
+          background-color: #fff;
+        }
+      }
     }
   }
   .nav{

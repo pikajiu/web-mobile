@@ -95,20 +95,37 @@ li {
   position: relative;
   overflow: hidden;
 }
-.layout .banner > ul {
+.layout .banner > ul:nth-of-type(1) {
   position: relative;
 }
-.layout .banner > ul > li {
+.layout .banner > ul:nth-of-type(1) > li {
   display: block;
   float: left;
 }
-.layout .banner > ul > li > a {
+.layout .banner > ul:nth-of-type(1) > li > a {
   width: 100%;
   display: block;
 }
-.layout .banner > ul > li > a > img {
+.layout .banner > ul:nth-of-type(1) > li > a > img {
   width: 100%;
   display: block;
+}
+.layout .banner > ul:nth-of-type(2) {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.layout .banner > ul:nth-of-type(2) > li {
+  width: 8px;
+  height: 8px;
+  margin: 0px 5px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  float: left;
+}
+.layout .banner > ul:nth-of-type(2) > li.active {
+  background-color: #fff;
 }
 .layout .nav {
   width: 100%;

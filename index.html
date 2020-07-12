@@ -21,6 +21,8 @@
     <div class="banner block topblock">
       <ul>
       </ul>
+      <ul>
+      </ul>
     </div>
     <div class="nav block ">
       <ul>
@@ -183,6 +185,12 @@
         <a href="#">
           <img src="{{value}}" alt="">
         </a>
+      </li>
+    {{/each}}
+  </script>
+  <script type="text/template" id="indicatorTemplate">
+    {{each imgs as value index}}
+      <li class = "{{index == 0?'active':''}}">
       </li>
     {{/each}}
   </script>
