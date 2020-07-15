@@ -1,0 +1,97 @@
+li{
+  text-decoration: none;
+  list-style: none;
+}
+
+ul,li,body{
+  margin:0;
+  padding: 0;
+}
+@headerHeight:32px;
+.jd_sprites(@bgpx,@bgpy){
+  background-image: url(../images/jd-sprites.png);
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+  background-position: @bgpx @bgpy;
+  background-clip: content-box;
+  background-origin: content-box;
+
+}
+
+.layout{
+  width: 100vw;
+  height: 100vh;
+  max-width: 640px;
+  min-width: 320px;
+  margin: 0 auto;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  .header{
+    height: @headerHeight;
+    display: flex;
+    background-color: #fff;
+    .back{
+      width: 22px;
+      padding: 5px;
+      .jd_sprites(-20px,1px);
+    }
+    form{
+      flex: 1;
+      position: relative;
+      input{
+        height: 100%;
+        width: 100%;
+        border: none;
+        border: 1px solid #000;
+        border-radius: @headerHeight/2;
+        padding: 2px 0 2px 30px;
+      }
+      &::before{
+  
+        content: '';
+        width: 22px;
+        height: 22px;
+        top: 5px;
+        position: absolute;
+        .jd_sprites(-80px,4px);
+        padding-left:10px;
+      }
+    }
+    .menu{
+      width: 22px;
+      padding: 5px;
+      .jd_sprites(-58px,1px);
+  
+    }
+  }
+  .main{
+    flex: 1;
+    background-color: #ff0000;
+    display: flex;
+    .left{
+      width: 60px;
+      background-color: #00ffff;
+    }
+    .right{
+      flex: 1;
+    }
+  }
+  
+  .jd_navbar{
+    background-color: #fff;
+    ul{
+      display: flex;
+      li{
+        flex: 1;
+        text-align: center;
+        img{
+          
+          display: inline-block;
+          width: 70%;
+        }
+      }
+    }
+  }
+}
+
