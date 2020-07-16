@@ -1,4 +1,5 @@
-li {
+li,
+a {
   text-decoration: none;
   list-style: none;
 }
@@ -71,15 +72,40 @@ body {
 }
 .layout .main {
   flex: 1;
-  background-color: #ff0000;
   display: flex;
+  overflow: hidden;
 }
 .layout .main .left {
-  width: 60px;
-  background-color: #00ffff;
+  width: 75px;
+  background-color: #eee;
+  overflow: hidden;
+  /* important!左侧自由滑动
+      1. .swiper-container height: 100%;
+      2. .swiper-slide height: auto; 
+      3. freeMode: true,
+      4. SliderPerView :'auto'
+      */
+}
+.layout .main .left .swiper-container {
+  height: 100%;
+}
+.layout .main .left .swiper-container .swiper-slide {
+  height: auto;
+}
+.layout .main .left .swiper-container .swiper-slide li.active {
+  background-color: #fff;
+}
+.layout .main .left .swiper-container .swiper-slide li a {
+  width: 100%;
+  padding: 10px 0px;
+  margin: 0;
+  text-align: center;
+  display: inline-block;
+  color: #000;
 }
 .layout .main .right {
   flex: 1;
+  background-color: #ff0000;
 }
 .layout .jd_navbar {
   background-color: #fff;
@@ -94,4 +120,7 @@ body {
 .layout .jd_navbar ul li img {
   display: inline-block;
   width: 70%;
+}
+.swiper-container {
+  height: 581.5px;
 }

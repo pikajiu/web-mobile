@@ -1,14 +1,19 @@
-li{
+li,
+a {
   text-decoration: none;
   list-style: none;
 }
 
-ul,li,body{
-  margin:0;
+ul,
+li,
+body {
+  margin: 0;
   padding: 0;
 }
-@headerHeight:32px;
-.jd_sprites(@bgpx,@bgpy){
+
+@headerHeight: 32px;
+
+.jd_sprites(@bgpx, @bgpy) {
   background-image: url(../images/jd-sprites.png);
   background-size: 200px 200px;
   background-repeat: no-repeat;
@@ -18,7 +23,7 @@ ul,li,body{
 
 }
 
-.layout{
+.layout {
   width: 100vw;
   height: 100vh;
   max-width: 640px;
@@ -27,19 +32,23 @@ ul,li,body{
   background-color: #eee;
   display: flex;
   flex-direction: column;
-  .header{
+
+  .header {
     height: @headerHeight;
     display: flex;
     background-color: #fff;
-    .back{
+
+    .back {
       width: 22px;
       padding: 5px;
-      .jd_sprites(-20px,1px);
+      .jd_sprites(-20px, 1px);
     }
-    form{
+
+    form {
       flex: 1;
       position: relative;
-      input{
+
+      input {
         height: 100%;
         width: 100%;
         border: none;
@@ -47,46 +56,82 @@ ul,li,body{
         border-radius: @headerHeight/2;
         padding: 2px 0 2px 30px;
       }
-      &::before{
-  
+
+      &::before {
         content: '';
         width: 22px;
         height: 22px;
         top: 5px;
         position: absolute;
-        .jd_sprites(-80px,4px);
-        padding-left:10px;
+        .jd_sprites(-80px, 4px);
+        padding-left: 10px;
       }
     }
-    .menu{
+
+    .menu {
       width: 22px;
       padding: 5px;
-      .jd_sprites(-58px,1px);
-  
+      .jd_sprites(-58px, 1px);
+
     }
   }
-  .main{
+
+  .main {
     flex: 1;
-    background-color: #ff0000;
     display: flex;
-    .left{
-      width: 60px;
-      background-color: #00ffff;
+    overflow: hidden;
+
+    .left {
+      width: 75px;
+      background-color: #eee;
+      overflow: hidden;
+      /* important!左侧自由滑动
+      1. .swiper-container height: 100%;
+      2. .swiper-slide height: auto; 
+      3. freeMode: true,
+      4. SliderPerView :'auto'
+      */
+      .swiper-container{
+        height: 100%;
+        .swiper-slide {
+          height: auto;
+          li {
+            &.active{
+              background-color: #fff;
+            }
+            a {
+              width: 100%;
+              padding: 10px 0px;
+              margin: 0;
+              // line-height: 50px;
+              text-align: center;
+              display: inline-block;
+              color: #000
+            }
+          }
+        }
+      }
+
     }
-    .right{
+
+    .right {
       flex: 1;
+      background-color: #ff0000;
     }
   }
-  
-  .jd_navbar{
+
+  .jd_navbar {
     background-color: #fff;
-    ul{
+
+    ul {
       display: flex;
-      li{
+
+      li {
         flex: 1;
         text-align: center;
-        img{
-          
+
+        img {
+
           display: inline-block;
           width: 70%;
         }
@@ -95,3 +140,7 @@ ul,li,body{
   }
 }
 
+.swiper-container {
+  // width: 600px;
+  height: 581.5px;
+}
